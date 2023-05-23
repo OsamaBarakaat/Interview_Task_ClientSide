@@ -1,0 +1,65 @@
+#userXmark{
+    color: red;
+}
+
+#userEdit{
+    color: goldenrod;
+}
+
+#userXmark,#userEdit{
+    font-size: large;
+}
+
+.details {
+    position: relative;
+  display: inline-block;
+  }
+  
+  .message {
+    position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 100px;
+  transform: translateX(-50%);
+  background-color:#333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  }
+  
+  .details:hover .message {
+    top: -50px;
+  opacity: 1;
+  visibility: visible;
+  }
+
+  .details2 {
+    position: relative;
+  display: inline-block;
+  }
+  
+  .message2 {
+    position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 100px;
+  transform: translateX(-50%);
+  background-color:#333;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  }
+  
+  .details2:hover .message2 {
+    top: -50px;
+  opacity: 1;
+  visibility: visible;
+  }
