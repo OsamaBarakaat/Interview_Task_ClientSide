@@ -39,6 +39,7 @@ function UsersCard({ item, index }) {
           .then((res) => {
             console.log(res.data.data);
           })
+
           .catch((err) => {
             console.log(err.message);
           });
