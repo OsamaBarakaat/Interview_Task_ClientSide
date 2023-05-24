@@ -138,6 +138,13 @@ function Edit() {
       })
       .then((res) => {
         console.log(res);
+        setSuccessMessage("new address added successfully");
+        setTimeout(() => {
+          setSuccessMessage("");
+        }, 3000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);

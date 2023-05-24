@@ -47,7 +47,7 @@ function Header() {
                   e.target.style.fontSize = "1em";
                 }}
               >
-                Portfolio
+                Thanks
               </Link>
             </Nav.Link>
           </Nav>
