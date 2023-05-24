@@ -4,11 +4,17 @@ import axios from "axios";
 import Table from "react-bootstrap/Table";
 import "./UsersCard.css";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 function UsersCard({ item, index }) {
+  const navigate = useNavigate();
+  const handleNavigate = (id) => {
+    navigate(`Edit/${id}`);
+  };
   const deleteUser = (id) => {
     Swal.fire({
       title: "Are You Want to Remove user?",
+      width: 300,
 
       text: "You will not be able to recover the user again",
 
@@ -20,11 +26,18 @@ function UsersCard({ item, index }) {
       cancelButtonText: "No Keep it",
     }).then((result) => {
       if (result.value) {
-        Swal.fire("Deleted", "user deleted succefully", "success");
+        // "",
+        // "success",
+        Swal.fire({
+          title: "Deleted",
+          width: 300,
+          text: "user deleted succefully",
+          icon: "success",
+        });
         axios
-          .delete(`http://localhost:4000/user/${id}`)
+          .delete(`http://localhost:8000/user/${id}`)
           .then((res) => {
-            console.log(res.data);
+            console.log(res.data.data);
           })
           .catch((err) => {
             console.log(err.message);
@@ -33,20 +46,25 @@ function UsersCard({ item, index }) {
           window.location.reload();
         }, 2000);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire("Cancelled", "Your user is Save", "error");
+        Swal.fire({
+          // "Cancelled", "Your user is Save", "error"
+          title: "Cancelled",
+          width: 300,
+          text: "Your user is Save",
+          icon: "error",
+        });
       }
-      // location.reload();
     });
   };
   return (
     <>
-      <Table responsive striped bordered hover>
+      <table class="table table-dark table-hover table-bordered border-primary">
         <thead>
           <tr>
             <th>#</th>
             <th>User name</th>
             <th>Age</th>
-            <th>address</th>
+            <th>addresses</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -55,7 +73,13 @@ function UsersCard({ item, index }) {
             <td>{index + 1}</td>
             <td>{item.userName}</td>
             <td>{item.age}</td>
-            <td>{item.address[0].descreption}</td>
+            <td>
+              <ul className="text-center">
+                {item.address[0].descreption.map((address, index) => (
+                  <li key={index}>{address}</li>
+                ))}
+              </ul>
+            </td>
             <td>
               <Row>
                 <Col>
@@ -70,26 +94,19 @@ function UsersCard({ item, index }) {
                 </Col>
                 <Col>
                   <div className="details2">
-                    <i class="fa-solid fa-user-pen" id="userEdit"></i>
+                    <i
+                      class="fa-solid fa-user-pen"
+                      id="userEdit"
+                      onClick={() => handleNavigate(item._id)}
+                    ></i>
                     <span className="message2">Edit</span>
                   </div>
                 </Col>
               </Row>
             </td>
           </tr>
-          {/* <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
-          </tr> */}
         </tbody>
-      </Table>
+      </table>
     </>
   );
 }
