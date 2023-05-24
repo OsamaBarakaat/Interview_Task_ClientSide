@@ -68,7 +68,7 @@ const AddUser = () => {
       return;
     }
     const ageValue = age?.current?.value;
-    if (!ageValue) {
+    if (!ageValue || ageValue < 20) {
       setErrMessageAge(`Age should be greater than
        or equal to 20.`);
       setTimeout(() => {
@@ -82,6 +82,7 @@ const AddUser = () => {
       }, 3000);
       return;
     }
+
     axios
       .post(
         "http://localhost:8000/user",
