@@ -75,13 +75,14 @@ const AddUser = () => {
         setErrMessageAge("");
       }, 3000);
       return;
-    } else if (typeof ageValue !== Number) {
-      setErrMessageAge(`age shoud be numbers only`);
-      setTimeout(() => {
-        setErrMessageAge("");
-      }, 3000);
-      return;
     }
+    // else if (typeof ageValue !== Number) {
+    //   setErrMessageAge(`age shoud be numbers only`);
+    //   setTimeout(() => {
+    //     setErrMessageAge("");
+    //   }, 3000);
+    //   return;
+    // }
 
     axios
       .post(
@@ -151,7 +152,7 @@ const AddUser = () => {
             <div>
               <label htmlFor="">age</label>
             </div>
-            <input type="text" className="form-control" ref={age} />
+            <input type="number" className="form-control" ref={age} />
             <small id="smallErr">{errMessageAge}</small>
           </div>
           <div className="m-2">
